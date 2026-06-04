@@ -11,6 +11,7 @@ def unpickle(file):
 
 BATCH_NUMBER = 1
 EXAMPLE_NUMBER = 23
+MAX_PIXEL_VALUE = 255
 
 file = "dataset/" + batches[BATCH_NUMBER - 1]
 
@@ -18,7 +19,7 @@ data_batch_1 = unpickle(file)
 
 print(data_batch_1.keys())
 
-data = data_batch_1[b'data']
+data = data_batch_1[b'data'] / MAX_PIXEL_VALUE
 labels = data_batch_1[b'labels']
 batch_label = data_batch_1[b'batch_label']
 filenames = data_batch_1[b'filenames']
@@ -37,9 +38,7 @@ data_example = data[EXAMPLE_NUMBER]
 data_example = data_example.reshape(3, 32, 32)
 label_example = labels[EXAMPLE_NUMBER]
 file_example = filenames[EXAMPLE_NUMBER]
-print(label_example)
-print(file_example)
-print(data_example.shape)
+print(data_example.max())
 
 plt.imshow(data_example.transpose(1, 2, 0))
 plt.show()
