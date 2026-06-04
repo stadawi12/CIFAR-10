@@ -1,5 +1,3 @@
-import matplotlib.pyplot as plt
-import numpy as np
 import torch
 
 # Names of the data batches in the dataset
@@ -22,6 +20,8 @@ def load_data(batch_number):
     return data, labels
 
 if __name__ == "__main__":
+
+    import matplotlib.pyplot as plt
 
     BATCH_NUMBER = 4
     EXAMPLE_NUMBER = 23
