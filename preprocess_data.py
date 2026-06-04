@@ -14,13 +14,14 @@ BATCH_NUMBER = 4
 EXAMPLE_NUMBER = 23
 MAX_PIXEL_VALUE = 255
 
-file = "dataset/" + batches[BATCH_NUMBER - 1]
+file_name : str = "dataset/" + batches[BATCH_NUMBER - 1]
 
-data_batch_1 = unpickle(file)
+data_batch_1 = unpickle(file_name)
 
 print(data_batch_1.keys())
 
-data = torch.tensor(data_batch_1[b'data'], dtype=torch.float32) / MAX_PIXEL_VALUE
+data = torch.tensor(data_batch_1[b'data'], dtype=torch.float32)
+data.div_(MAX_PIXEL_VALUE)
 labels = torch.tensor(data_batch_1[b'labels'], dtype=torch.long)
 batch_label = data_batch_1[b'batch_label']
 filenames = data_batch_1[b'filenames']
