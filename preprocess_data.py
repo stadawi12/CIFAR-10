@@ -16,6 +16,7 @@ def load_data(batch_number):
     data_batch = unpickle(file_name)
     data = torch.tensor(data_batch[b'data'], dtype=torch.float32)
     data.div_(MAX_PIXEL_VALUE)
+    data = data.reshape(-1, 3, 32, 32)
     labels = torch.tensor(data_batch[b'labels'], dtype=torch.long)
     return data, labels
 
@@ -29,8 +30,7 @@ if __name__ == "__main__":
 
     data, labels = load_data(BATCH_NUMBER)
 
-    data_example = data[EXAMPLE_NUMBER]
-    data_example = data_example.reshape(3, 32, 32)
+    data_example = data[EXAMPLE_NUMBER] 
     print(data_example.max())
 
     plt.imshow(data_example.permute(1, 2, 0))
