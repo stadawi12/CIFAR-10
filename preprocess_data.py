@@ -9,9 +9,10 @@ def unpickle(file):
         dict = pickle.load(fo, encoding='bytes')
     return dict
 
-batch = 2
+BATCH_NUMBER = 1
+EXAMPLE_NUMBER = 23
 
-file = "dataset/" + batches[batch]
+file = "dataset/" + batches[BATCH_NUMBER - 1]
 
 data_batch_1 = unpickle(file)
 
@@ -21,22 +22,21 @@ data = data_batch_1[b'data']
 labels = data_batch_1[b'labels']
 batch_label = data_batch_1[b'batch_label']
 filenames = data_batch_1[b'filenames']
-print(data.shape)
-print(len(labels))
-print(batch_label)
-print(len(filenames))
+# print(data.shape)
+# print(len(labels))
+# print(batch_label)
+# print(len(filenames))
 
 # array = np.arange(27)
 # print(array)
 # array = array.reshape(3, 3, 3)
 # print(array)
 
-example_number = 45
 
-data_example = data[example_number]
+data_example = data[EXAMPLE_NUMBER]
 data_example = data_example.reshape(3, 32, 32)
-label_example = labels[example_number]
-file_example = filenames[example_number]
+label_example = labels[EXAMPLE_NUMBER]
+file_example = filenames[EXAMPLE_NUMBER]
 print(label_example)
 print(file_example)
 print(data_example.shape)
