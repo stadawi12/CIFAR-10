@@ -2,6 +2,7 @@ import torch
 
 # Names of the data batches in the dataset
 BATCHES = ["data_batch_1", "data_batch_2", "data_batch_3", "data_batch_4", "data_batch_5"]
+MAX_PIXEL_VALUE = 255
 
 # Function to unpickle the data files
 def unpickle(file):
@@ -25,8 +26,7 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
     BATCH_NUMBER = 4
-    EXAMPLE_NUMBER = 23
-    MAX_PIXEL_VALUE = 255
+    EXAMPLE_NUMBER = 23    
 
     data, labels = load_data(BATCH_NUMBER)
 

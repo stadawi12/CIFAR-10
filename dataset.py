@@ -13,7 +13,17 @@ class CIFAR10Dataset(Dataset):
         return self.images[idx], self.labels[idx]
 
 if __name__ == "__main__":
+    import matplotlib.pyplot as plt
+    import torch
+
     BATCH_NUMBER = 4
+
     data, labels = load_data(BATCH_NUMBER)
     dataset = CIFAR10Dataset(data, labels)
-    print(len(dataset))
+
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=64, shuffle=True)
+    
+    data_example, label_example = dataset[23]
+
+    plt.imshow(data_example.permute(1, 2, 0))
+    plt.show()
