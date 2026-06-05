@@ -9,6 +9,7 @@ class SimpleCNN(nn.Module):
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
         self.fc1 = nn.Linear(64 * 8 * 8, 512)
         self.fc2 = nn.Linear(512, 10)
+        self.softmax = softmax
 
     def forward(self, x):
         x = self.pool(torch.relu(self.conv1(x)))

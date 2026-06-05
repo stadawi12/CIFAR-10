@@ -39,9 +39,10 @@ if __name__ == "__main__":
 
         return losses
     
-    test_data, test_labels_one_hot = load_data(5)
+    test_data, test_labels_one_hot = load_data("test")
+    test_dataloader = DataLoader(list(zip(test_data, test_labels_one_hot)), batch_size=MINI_BATCH_SIZE)
 
-    def testing_loop(model, loss_fn):
+    def testing_loop(model, loss_fn, test_dataloader):
         model.eval()
         test_loss = 0
         correct = 0
@@ -56,9 +57,7 @@ if __name__ == "__main__":
         print(f"Test Loss: {test_loss}, Accuracy: {accuracy}")
     
     train_losses = train_loop(model, loss_fn, optimiser)
-    test_loss, test_accuracy = testing_loop(model, loss_fn)
-
-    print(f"Final Test Loss: {test_loss}, Final Test Accuracy: {test_accuracy}")
+    testing_loop(model, loss_fn, test_dataloader)
     
     plt.plot(train_losses)
     plt.show()
