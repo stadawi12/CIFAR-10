@@ -15,5 +15,5 @@ class SimpleCNN(nn.Module):
         x = self.pool(torch.relu(self.conv2(x)))
         x = x.view(-1, 64 * 8 * 8)
         x = torch.relu(self.fc1(x))
-        x = self.fc2(x)
+        x = torch.softmax(self.fc2(x), dim=1)
         return x
