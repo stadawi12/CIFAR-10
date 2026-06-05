@@ -19,19 +19,22 @@ def load_data(batch_number):
     data.div_(MAX_PIXEL_VALUE)
     data = data.reshape(-1, 3, 32, 32)
     labels = torch.tensor(data_batch[b'labels'], dtype=torch.long)
-    return data, labels
+    labels_one_hot = torch.nn.functional.one_hot(labels, num_classes=10)
+    return data, labels_one_hot
 
 if __name__ == "__main__":
 
     import matplotlib.pyplot as plt
 
     BATCH_NUMBER = 4
-    EXAMPLE_NUMBER = 23    
+    EXAMPLE_NUMBER = 0   
 
-    data, labels = load_data(BATCH_NUMBER)
+    data, labels_one_hot = load_data(BATCH_NUMBER)
 
     data_example = data[EXAMPLE_NUMBER] 
+    label_one_hot_example = labels_one_hot[EXAMPLE_NUMBER]
     print(data_example.max())
+    print(label_one_hot_example)
 
-    plt.imshow(data_example.permute(1, 2, 0))
-    plt.show()
+    # plt.imshow(data_example.permute(1, 2, 0))
+    # plt.show()
