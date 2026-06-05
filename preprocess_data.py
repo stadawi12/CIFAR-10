@@ -13,7 +13,10 @@ def unpickle(file):
 
 # Function to load the data and labels from a specified batch
 def load_data(batch_number):
-    file_name : str = "dataset/" + BATCHES[batch_number - 1]
+    if batch_number == "test":
+        file_name = "dataset/test_batch"
+    else:
+        file_name : str = "dataset/" + BATCHES[batch_number - 1]
     data_batch = unpickle(file_name)
     data = torch.tensor(data_batch[b'data'], dtype=torch.float32)
     data.div_(MAX_PIXEL_VALUE)
