@@ -19,7 +19,7 @@ def load_data(batch_number):
     data.div_(MAX_PIXEL_VALUE)
     data = data.reshape(-1, 3, 32, 32)
     labels = torch.tensor(data_batch[b'labels'], dtype=torch.long)
-    labels_one_hot = torch.nn.functional.one_hot(labels, num_classes=10)
+    labels_one_hot = torch.nn.functional.one_hot(labels, num_classes=10) * 1.0
     return data, labels_one_hot
 
 if __name__ == "__main__":
