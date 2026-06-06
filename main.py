@@ -6,16 +6,16 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
     import torch
 
-    LEARNING_RATE = 0.001
+    LEARNING_RATE = 0.1
     MINI_BATCH_SIZE = 64
-    SOFTMAX = True
+    SOFTMAX = False
     NUMBER_OF_EPOCHS = 5
 
     model = SimpleCNN(softmax=SOFTMAX)
 
     loss_fn = torch.nn.CrossEntropyLoss()
 
-    optimiser = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    optimiser = torch.optim.SGD(model.parameters(), lr=LEARNING_RATE, momentum=0.9)
 
     def train_loop(model, loss_fn, optimiser):
    
